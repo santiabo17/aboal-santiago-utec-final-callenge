@@ -387,7 +387,7 @@ EOF
             echo "📊 Performance Test Results:"
             echo "   Total Requests: ${results}"
             echo "   Errors: ${errors}"
-            echo "   Success Rate: ${(successRate * 10).round() / 10}%"
+            echo "   Success Rate: ${(successRate * 10.0).round() / 10}%"
             echo "   Average Response Time: ${avgResponse}ms"
             echo "   Max Response Time: ${maxResponse}ms"
 
