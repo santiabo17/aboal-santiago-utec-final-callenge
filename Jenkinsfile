@@ -438,6 +438,27 @@ EOF
         }
       }
     }
+
+    stage('Validate JMeter Results') {
+    steps {
+        script {
+            def resultsFile = "out/results.jtl"
+            
+            if (!fileExists(resultsFile)) {
+                error "JMeter results file not found! Test plan may have failed to execute."
+            }
+
+            // Count lines excluding header
+            def totalRequests = sh(script: "tail -n +2 ${resultsFile} | wc -l", returnStdout: true).trim().toInteger()
+
+            if (totalRequests == 0) {
+                error "JMeter test plan executed 0 requests! Please check thread group/users/samplers."
+            } else {
+                echo "✅ JMeter executed ${totalRequests} requests."
+            }
+        }
+    }
+}
   }
 
   post {
