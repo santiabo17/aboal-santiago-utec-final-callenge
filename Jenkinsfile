@@ -374,9 +374,9 @@ EOF
         script {
           if (fileExists("${OUT_DIR}/results.jtl")) {
             // Read and analyze results
-            def results = sh(script: "tail -n +2 ${OUT_DIR}/results.jtl | wc -l", returnStdout: true).trim().toInteger()
+            def results = sh(script: "tail -n +2 ${OUT_DIR}/results.jtl | wc -l", returnStdout: true).trim().toDouble()
             def errors = sh(script: "tail -n +2 ${OUT_DIR}/results.jtl | awk -F',' '\$8==\"false\"' | wc -l", returnStdout: true).trim().toInteger()
-            def successRate = ((results - errors) * 100) / results
+            def successRate = results > 0 ? ((results - errors) * 100) / results : 0
             
             // Calculate average response time
             def avgResponse = sh(script: "tail -n +2 ${OUT_DIR}/results.jtl | awk -F',' '{sum+=\$2; count++} END {if(count>0) print int(sum/count); else print 0}'", returnStdout: true).trim().toInteger()
