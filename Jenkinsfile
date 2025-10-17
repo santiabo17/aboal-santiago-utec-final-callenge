@@ -428,7 +428,7 @@ EOF
             }
 
             // Enhanced build description with more metrics
-            def successRateFormatted = ((successRate * 10) / 10.0)
+            // def successRateFormatted = ((successRate * 10) / 10.0)
             currentBuild.description = "Success: ${successRateFormatted}% | Avg: ${avgResponse}ms | Max: ${maxResponse}ms | Requests: ${results}"
             // currentBuild.description = "Success: ${Math.round(successRate * 10) / 10}% | Avg: ${avgResponse}ms | Max: ${maxResponse}ms | Requests: ${results}"
             
