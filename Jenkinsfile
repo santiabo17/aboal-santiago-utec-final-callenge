@@ -388,7 +388,7 @@ EOF
             echo "   Total Requests: ${results}"
             echo "   Errors: ${errors}"
             // echo "   Success Rate: ${(successRate * 10.0).round() / 10}%"
-            echo "   Success Rate: ${String.format('%.1f', successRate)}%"
+            echo "   Success Rate: ${String.format('%.1f', successRate.toDouble())}%"
             echo "   Average Response Time: ${avgResponse}ms"
             echo "   Max Response Time: ${maxResponse}ms"
 
